@@ -1,0 +1,124 @@
+{
+  "api": {
+    "type": "object",
+    "description": "数据源与网络",
+    "items": {
+      "ygocdb_base": {
+        "type": "string",
+        "description": "ygocdb API 根地址",
+        "default": "https://ygocdb.com/api/v0"
+      },
+      "mc_base": {
+        "type": "string",
+        "description": "MC 卡组 API 根地址",
+        "default": "https://ygo.xyk.one/mc/api"
+      },
+      "timeout_seconds": {
+        "type": "int",
+        "description": "单次请求超时（秒）",
+        "default": 10
+      },
+      "retries": {
+        "type": "int",
+        "description": "失败重试次数",
+        "default": 2
+      },
+      "cache_ttl_seconds": {
+        "type": "int",
+        "description": "卡查缓存时间（秒）",
+        "default": 21600
+      },
+      "mc_cache_ttl_seconds": {
+        "type": "int",
+        "description": "MC 数据缓存时间（秒）",
+        "default": 600
+      }
+    }
+  },
+  "daily": {
+    "type": "object",
+    "description": "每日一卡",
+    "items": {
+      "targets": {
+        "type": "list",
+        "description": "推送目标 UMO 列表",
+        "hint": "由 /ygo daily target 自动维护；一般不需要手填。",
+        "default": []
+      },
+      "timezone": {
+        "type": "string",
+        "description": "时区",
+        "default": "Asia/Shanghai"
+      },
+      "avoid_recent_days": {
+        "type": "int",
+        "description": "避免重复的天数",
+        "default": 7
+      },
+      "max_chars": {
+        "type": "int",
+        "description": "单条消息最大字符数",
+        "default": 1200
+      }
+    }
+  },
+  "ai": {
+    "type": "object",
+    "description": "裁定问答 AI",
+    "items": {
+      "mode": {
+        "type": "string",
+        "description": "AI 通道",
+        "options": ["astrbot", "openai"],
+        "labels": ["AstrBot 当前模型", "独立 OpenAI 兼容接口"],
+        "default": "astrbot"
+      },
+      "base_url": {
+        "type": "string",
+        "description": "独立接口 Base URL",
+        "default": "https://api.deepseek.com/v1"
+      },
+      "api_key": {
+        "type": "string",
+        "description": "独立接口 API Key",
+        "default": ""
+      },
+      "model": {
+        "type": "string",
+        "description": "独立接口模型名",
+        "default": "deepseek-chat"
+      },
+      "timeout_seconds": {
+        "type": "int",
+        "description": "AI 超时（秒）",
+        "default": 60
+      },
+      "max_question_chars": {
+        "type": "int",
+        "description": "裁定问题最大字符数",
+        "default": 2000
+      }
+    }
+  },
+  "limits": {
+    "type": "object",
+    "description": "频率与输出限制",
+    "items": {
+      "max_search_results": {
+        "type": "int",
+        "description": "卡查候选数量",
+        "default": 5
+      },
+      "cooldown_seconds": {
+        "type": "int",
+        "description": "普通指令冷却（秒）",
+        "default": 1
+      },
+      "ruling_cooldown_seconds": {
+        "type": "int",
+        "description": "裁定指令冷却（秒）",
+        "default": 10
+      }
+    }
+  }
+}
